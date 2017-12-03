@@ -1,0 +1,8 @@
+subdirs(Core)
+subdirs(Network)
+subdirs(Render)
+subdirs(Game)
+subdirs(UI)
+if(EQEMU_BUILD_AUTH_LIBS)
+  subdirs(Authentication)
+endif(EQEMU_BUILD_AUTH_LIBS)

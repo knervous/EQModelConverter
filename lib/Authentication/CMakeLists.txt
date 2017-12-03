@@ -1,0 +1,10 @@
+file(GLOB AUTH_FILES "*Auth.cpp")
+
+include_directories(${TomCrypt_INCLUDE_DIRS})
+foreach(AUTH_FILE ${AUTH_FILES})
+  get_filename_component(AUTH_NAME ${AUTH_FILE} NAME_WE)
+  set(LIB_NAME "EQuilibre${AUTH_NAME}")
+  message(STATUS "Building authentication library ${LIB_NAME}")
+  add_library(${LIB_NAME} SHARED ${AUTH_FILE})
+  target_link_libraries(${LIB_NAME} TomCrypt)
+endforeach(AUTH_FILE)

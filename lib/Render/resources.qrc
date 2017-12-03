@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>fragment.glsl</file>
+        <file>vertex.glsl</file>
+        <file>vertex_skinned_texture.glsl</file>
+    </qresource>
+</RCC>
