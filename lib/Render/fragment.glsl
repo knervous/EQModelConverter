@@ -1,4 +1,4 @@
-#version 330 core
+
 // Copyright (C) 2012 PiB <pixelbound@gmail.com>
 //  
 // EQuilibre is free software; you can redistribute it and/or

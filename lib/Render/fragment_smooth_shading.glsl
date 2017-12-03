@@ -1,4 +1,3 @@
-#version 330 core
 
 uniform vec4 u_light_ambient;
 uniform vec4 u_light_diffuse;

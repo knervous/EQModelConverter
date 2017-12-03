@@ -1,6 +1,4 @@
-#version 330 core
-#extension EXT_gpu_shader4 : enable
-
+#extension GL_EXT_gpu_shader4 : require
 attribute vec3 a_position;
 attribute vec3 a_normal;
 attribute vec3 a_texCoords;
@@ -70,16 +68,16 @@ vec4 skin(vec3 pos)
     float rotIndex1 = ((f1 * 2.0) + 1.0) + trackOffset + animOffset;
     float transIndex2 = (f2 * 2.0) + trackOffset + animOffset;
     float rotIndex2 = ((f2 * 2.0) + 1.0) + trackOffset + animOffset;
-    vec4 trans1 = texelFetch(u_animTex, (int)transIndex1);
-    vec4 rot1 = texelFetch(u_animTex, (int)rotIndex1);
-    vec4 trans2 = texelFetch(u_animTex, (int)transIndex2);
-    vec4 rot2 = texelFetch(u_animTex, (int)rotIndex2);
+    vec4 trans1 = texelFetch(u_animTex, int(transIndex1));
+    vec4 rot1 = texelFetch(u_animTex, int(rotIndex1));
+    vec4 trans2 = texelFetch(u_animTex, int(transIndex2));
+    vec4 rot2 = texelFetch(u_animTex, int(rotIndex2));
   
     // Interpolate the translation and rotation parts of the bone transform.
     float alpha = (u_animFrame - fi);
     vec4 trans = mix(trans1, trans2, alpha);
     vec4 rot = nlerp(rot1, rot2, alpha);
-    return vec4(0,0,0,1.0); //vec4(rotate_by_quat(pos, rot) + trans.xyz, 1.0);
+    return vec4(rotate_by_quat(pos, rot) + trans.xyz, 1.0);
 }
 
 void main()
